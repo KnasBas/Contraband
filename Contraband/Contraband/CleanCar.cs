@@ -10,7 +10,8 @@ namespace Contraband
     {
         public CleanCar()
         {
-            passengers = generetor.Next(1, 4); //detta ger ett slump värde mellan 1-3
+            passengers = generator.Next(1, 4); //detta ger ett slump värde mellan 1-3
+            contrabandAmount = 0;
         }
     }
 }
