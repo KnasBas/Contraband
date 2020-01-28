@@ -32,12 +32,14 @@ namespace Contraband
                 answer = Console.ReadLine();
                 int cars = 0;
                 bool whichCar = int.TryParse(answer, out cars);
-                while (!whichCar && cars > amount || cars < amount)
+
+                //hann inte att få felsökningen att fungera
+                /*while (!whichCar && cars > amount || cars < amount) 
                 {
                     Console.WriteLine("Ogiltigt svar!");
                     answer = Console.ReadLine();
                     whichCar = int.TryParse(answer, out cars);
-                }
+                }*/
 
                 int possibility = generator.Next(1); // 50% chans generator
 
