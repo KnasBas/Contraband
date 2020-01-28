@@ -18,35 +18,36 @@ namespace Contraband
             string answer = Console.ReadLine();
             int amount = 0;
             bool howMany = int.TryParse(answer, out amount);
-            while(!howMany || amount <= 0) //felsökning, ser till att spelaren måste ge ett giltigt svar
+            while(!howMany && amount <= 0) //felsökning, ser till att spelaren måste ge ett giltigt svar
             {
                 Console.WriteLine("Ogiltigt svar!");
                 answer = Console.ReadLine();
                 howMany = int.TryParse(answer, out amount);
             }
-            List<int> carlist = new List<int>(amount);
+            List<int> carlist = new List<int>(); //lista skapad
+            carlist.AddRange(Enumerable.Range(1, amount)); //skapar en lista med alla tal mellan 1 till amount
             while (1 > 0)
             {
-                Console.WriteLine("Vilken ska du titta på? [0-" + carlist.Count() + "]"); //får inte riktigt count att fungera tror jag skapar listans indexering på ett felaktigt sätt.
+                Console.WriteLine("Vilken ska du titta på? [1-" + carlist.Count() + "]"); //får inte riktigt count att fungera tror jag skapar listans indexering på ett felaktigt sätt.
                 answer = Console.ReadLine();
-                int car = 0;
-                bool whichCar = int.TryParse(answer, out car);
-                while (!whichCar || car > amount && car < amount)
+                int cars = 0;
+                bool whichCar = int.TryParse(answer, out cars);
+                while (!whichCar && cars > amount || cars < amount)
                 {
                     Console.WriteLine("Ogiltigt svar!");
                     answer = Console.ReadLine();
-                    whichCar = int.TryParse(answer, out car);
+                    whichCar = int.TryParse(answer, out cars);
                 }
 
                 int possibility = generator.Next(1); // 50% chans generator
 
                 if(possibility == 0) //checkar bilen via chans ifall den blir clean eller contraband. Men klassen kommer ihåg vilken bil du angett
                 {
-                    contrac1.Examine(car);
+                    contrac1.Examine(cars);
                 }
                 if(possibility == 1)
                 {
-                    cleanc1.Examine(car);
+                    cleanc1.Examine(cars);
                 }
                 
             }                     
